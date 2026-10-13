@@ -1,0 +1,172 @@
+/* ==========================================================================
+   1. RESET & DASAR (BASE STYLES)
+   ========================================================================== */
+
+/*
+  Reset box-sizing agar padding dan border tidak menambah ukuran total elemen.
+  Menghapus margin dan padding default dari seluruh browser.
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    background-color: #f8f9fa;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGASI (FLEXBOX)
+   ========================================================================== */
+
+.header {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 20px;
+    /* Default Mobile: Semua konten di-align ke tengah secara vertikal */
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* 
+  Flexbox digunakan untuk menyusun daftar menu navigasi secara horizontal 
+*/
+.menu {
+    list-style: none; /* Menghilangkan tanda bullet (.) pada <ul> */
+    display: flex;    /* Mengubah urutan <li> dari vertikal menjadi horizontal */
+    justify-content: center; /* Mengetengahkan item menu */
+    gap: 20px;        /* Jarak antar link menu */
+}
+
+.menu a {
+    color: #ffffff;
+    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Efek saat kursor diarahkan ke tautan menu */
+.menu a:hover {
+    color: #3498db;
+}
+
+/* ==========================================================================
+   3. SEKSI TENTANG SAYA
+   ========================================================================== */
+
+.tentang {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.tentang h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   4. SEKSI PROYEK (CSS GRID - MOBILE FIRST)
+   ========================================================================== */
+
+.proyek {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.proyek h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* 
+  Container Grid Proyek:
+  Secara default (Ponsel/Layar Kecil), layout diset 1 Kolom.
+*/
+.grid-proyek {
+    display: grid;
+    /* 1fr berarti 1 kolom yang menghabiskan seluruh lebar yang tersedia */
+    grid-template-columns: 1fr; 
+    gap: 20px; /* Jarak antar kartu proyek (baris dan kolom) */
+}
+
+/* Styling untuk setiap Kartu Proyek */
+.kartu {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; /* Sudut membulat */
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #34495e;
+    /* Efek transisi halus saat kartu di-hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek interaktif saat mouse berada di atas kartu */
+.kartu:hover {
+    transform: translateY(-5px); /* Kartu sedikit terangkat ke atas */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+
+.footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MEDIA QUERIES - MOBILE FIRST)
+   ========================================================================== */
+
+/* 
+  LAYAR TABLET (Lebar layar >= 600px)
+  Grid berubah dari 1 kolom menjadi 2 kolom.
+*/
+@media (min-width: 600px) {
+    .grid-proyek {
+        /* repeat(2, 1fr) sama artinya dengan "1fr 1fr" (2 kolom sama lebar) */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+/* 
+  LAYAR DESKTOP (Lebar layar >= 992px)
+  1. Grid berubah menjadi 3 kolom.
+  2. Header berubah menjadi Flexbox horizontal (Nama di kiri, Menu di kanan).
+*/
+@media (min-width: 992px) {
+    /* Mengubah grid proyek menjadi 3 kolom */
+    .grid-proyek {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolom sama lebar */
+    }
+
+    /* Mengatur tata letak Header agar lebih pas untuk layar lebar */
+    .header {
+        display: flex;
+        justify-content: space-between; /* Nama di ujung kiri, menu di ujung kanan */
+        align-items: center;            /* Menyejajarkan posisi vertikal secara presisi */
+        padding: 20px 40px;
+    }
+
+    .header h1 {
+        margin-bottom: 0; /* Menghilangkan margin bawah karena posisinya sudah sejajar */
+    }
+}
